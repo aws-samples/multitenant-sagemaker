@@ -130,7 +130,7 @@ Clean up :
 
 To avoid incurring ongoing costs, delete the resources you created as part of this solution bye executing following commands in order.
 
-$ cdk destroy Single-account-MulitenantSagemakerStack
+$ cdk destroy Single-account-MulitenantSagemakerStack -c table_name=allTenants
 
 Security
 
