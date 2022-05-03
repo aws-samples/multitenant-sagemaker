@@ -23,7 +23,7 @@ from os import path
 
 class SingleAccountTenantOnboardStack(core.Stack):
   
-    def create_tenant_stepfunction(self, table_name, sfn_role_arn):
+    def create_tenant_stepfunction(self, table_name, region, sfn_role_arn):
 
       #Create SFN
       with open("./SFN/CreateTenantSFN.json", "r") as fh:
@@ -34,7 +34,10 @@ class SingleAccountTenantOnboardStack(core.Stack):
         role_arn=sfn_role_arn,
         definition_string=json.dumps(create_tenant_asl),
         definition_substitutions={
-        "TableName": table_name
+        "TableName": table_name,
+        "CreateBucketConfiguration": {
+            "LocationConstraint": region"
+            }
         },
         state_machine_name="sm-multitenant-create-tenant-statemachine"
       )
