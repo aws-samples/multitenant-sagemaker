@@ -64,7 +64,7 @@ $ cdk bootstrap aws://<aws-account>/<region> -c table_name=allTenants
 
 Deploying new stack with defined IAM Roles : Execute following command by passing a required parameter of DynamoDB table name.
 
-$ cdk deploy Single-account-MultitenantSagemakerStack -c table_name=allTenants -c region=<region>
+$ cdk deploy Single-account-MultitenantSagemakerStack -c table_name=allTenants
 
 Arguments to the stack creation :
 
