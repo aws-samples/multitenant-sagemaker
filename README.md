@@ -38,7 +38,7 @@ Steps to deploy the project
 
 1.	Clone the repository.
 
-$ git clone git@github.com:aws-samples/sagemaker-ml-pipeline-multi-tenant.git
+$ git clone git@github.com:aws-samples/multitenant-sagemaker.git
 
 2.	This project is set up like a standard Python project. To create the virtualenv it assumes that there is a python3 (or python for Windows) executable in your path with access to the venv package. create the virtualenv using following command.
 
