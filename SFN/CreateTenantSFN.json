@@ -5,7 +5,10 @@
     "CreateBucket": {
       "Type": "Task",
       "Parameters": {
-        "Bucket.$": "$.tenant.name"
+        "Bucket.$": "$.tenant.name",
+        "CreateBucketConfiguration": {
+          "LocationConstraint": "${LocationConstraint}"
+        }
       },
       "Resource": "arn:aws:states:::aws-sdk:s3:createBucket",
       "Next": "CreateModelPackageGroup",
