@@ -160,7 +160,7 @@ class SingleAccountTenantOnboardStack(core.Stack):
 
         sfn_role_arn = sfn_role.role_arn
 
-        self.create_tenant_stepfunction(table_name, region, sfn_role_arn)
+        self.create_tenant_stepfunction(table_name, env.region, sfn_role_arn)
         self.delete_tenant_step_function(table_name, sfn_role_arn)
         self.deploy_endpoint_stepfunction(table_name, sfn_role_arn)
         self.create_sm_pipeline(table, env.region)
