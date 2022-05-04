@@ -33,8 +33,8 @@ if __name__ == "__main__":
     pathlib.Path(f"{base_dir}/data").mkdir(parents=True, exist_ok=True)
     input_data = args.input_data
     print(input_data)
-    bucket = input_data.split("/")[1]
-    key = 'churn.txt'
+    bucket = input_data.split("/")[2].split(".s3.amazonaws.com")[0]
+    key = "/".join(input_data.split("/")[3:]) + 'churn.txt'
 
     logger.info("Downloading data from bucket: %s, key: %s", bucket, key)
     fn = f"{base_dir}/data/raw-data.csv"
