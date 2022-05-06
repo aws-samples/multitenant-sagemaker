@@ -38,33 +38,33 @@ Steps to deploy the project
 
 1.	Clone the repository.
 
-$ git clone git@github.com:aws-samples/multitenant-sagemaker.git
+   $ git clone git@github.com:aws-samples/multitenant-sagemaker.git
 
 2.	This project is set up like a standard Python project. To create the virtualenv it assumes that there is a python3 (or python for Windows) executable in your path with access to the venv package. create the virtualenv using following command.
 
-$ python3 -m venv .venv 
+   $ python3 -m venv .venv 
 
 3.	Use the following step to activate your virtualenv.
 
-$ source .venv/bin/activate
+   $ source .venv/bin/activate
 
 If you are a Windows platform, you would activate the virtualenv like this:
 
-% .venv\Scripts\activate.bat
+   % .venv\Scripts\activate.bat
 
 Once the virtualenv is activated, you can install the required dependencies.
 
-$ pip install -r requirements.txt
+   $ pip install -r requirements.txt
 
 4.	Run the following command to bootstrap the environment, replacing all <> occurences with select AWS account and region.
 
-$ cdk bootstrap aws://<aws-account>/<region> -c table_name=allTenants
+   $ cdk bootstrap aws://<aws-account>/<region> -c table_name=allTenants
 
 5.	Deploying the solution :
 
 Deploying new stack with defined IAM Roles : Execute following command by passing a required parameter of DynamoDB table name.
 
-$ cdk deploy Single-account-MultitenantSagemakerStack -c table_name=allTenants
+   $ cdk deploy Single-account-MultitenantSagemakerStack -c table_name=allTenants
 
 Arguments to the stack creation :
 
@@ -82,7 +82,7 @@ Steps to …
 
 Testing the solution
 
-•	Step 1 : In Step Function, execute Create Step Function sm-multitenant-create-tenant-statemachine to create tenant bucket, model registry group, and update tenant metadata in allTenants DynamoDB table. Follow the Input JSON format below, replacing tenant's name (same as bucket's name, i.e. "ut-101") with a global unique name. By default, the bucket being created will be blocked from public access.
+•	Step 1 : In Step Function, execute Create Step Function sm-multitenant-create-tenant-statemachine to create tenant bucket, model registry group, and update tenant metadata in allTenants DynamoDB table. Follow the Input JSON format below, replacing tenant's name (same as bucket's name, i.e. "ut-101") with a globally unique name. By default, the bucket being created will be blocked from public access.
 
 ![createsfn](./images/create-sfn.jpg) 
 ![createsfn-input](./images/create-sfn-input.jpg) 
@@ -131,7 +131,7 @@ Clean up :
 
 To avoid incurring ongoing costs, delete the resources you created as part of this solution bye executing following commands in order.
 
-$ cdk destroy Single-account-MulitenantSagemakerStack -c table_name=allTenants
+   $ cdk destroy Single-account-MulitenantSagemakerStack -c table_name=allTenants
 
 Security
 
