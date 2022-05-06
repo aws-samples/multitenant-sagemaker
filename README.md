@@ -70,7 +70,7 @@ Arguments to the stack creation :
 
 •	Table_name : (Required) Name of the DynamoDB table. This table stores tenant metadata.
 
-Note : Please note that this deployment takes approximately 3 minutes
+Note : Please note that this deployment takes approximately 3 minutes.
 
 After the stack is succefully deployed (You can see if there is an error as the cdk output, otherwise the stack is creation successful), please open the AWS Step Functions to execute steps 1-8, as instructed below.
 
@@ -83,6 +83,8 @@ Steps to …
 Testing the solution
 
 •	Step 1 : In Step Function, execute Create Step Function sm-multitenant-create-tenant-statemachine to create tenant bucket, model registry group, and update tenant metadata in allTenants DynamoDB table. Follow the Input JSON format below, replacing tenant's name (same as bucket's name, i.e. "ut-101") with a globally unique name. By default, the bucket being created will be blocked from public access.
+
+Note : Please note that this Create Step Function takes approximately less than a minute.
 
 ![createsfn](./images/create-sfn.jpg) 
 ![createsfn-input](./images/create-sfn-input.jpg) 
@@ -101,6 +103,8 @@ Testing the solution
 
 •	Step 4 : In Sagemaker Studio, execute machine learning pipeline sm-multitenant-model-build-pipeline to generate multiple model versions.
 
+Note : Please note that each machine learning pipeline takes approximately 15 minutes of processing, training, and evaluating. An individual step takes approximately 4-5 minutes.
+
 ![sm-pipeline](./images/sm-pipeline.jpg)  
 ![pipeline-v1](./images/pipeline-v1.jpg)
 ![pipeline-v2](./images/pipeline-v2.jpg)
@@ -114,6 +118,8 @@ Testing the solution
  
 •	Step 6 : In Step Function, execute Deploy Step Function sm-multitenant-deploy-tenant-statemachine to create and test model endpoint of the approved version, then update tenant metadata in allTenants DynamoDB table. Follow the Input JSON format below, replacing tenant's name (same as bucket's name, i.e. "ut-101") and tenant's version with your defined tenant's name and the approved modelpackage ARN.
 
+Note : Please note that this Deploy Step Function takes approximately 15 minutes.
+
 ![deploy-sfn](./images/deploy-sfn.jpg) 
 ![deploy-sfn-input](./images/deploy-sfn-input.jpg) 
 ![deploy-sfn-result](./images/deploy-sfn-result.jpg) 
@@ -123,6 +129,8 @@ Testing the solution
 
 •	Step 8 : In case you need to clean up the, in Step Function, execute Delete Step Function to delete tenant resources and update the tenant metadata in allTenants DynamoDB table.
  
+Note : Please note that this Delete Step Function takes approximately 5 minutes.
+
 ![delete-sfn](./images/delete-sfn.jpg) 
 ![delete-sfn-input](./images/delete-sfn-input.jpg) 
 ![delete-sfn-result](./images/delete-sfn-result.jpg) 
@@ -132,6 +140,8 @@ Testing the solution
 To avoid incurring ongoing costs, delete the resources you created as part of this solution bye executing following commands in order.
 
    $ cdk destroy Single-account-MulitenantSagemakerStack -c table_name=allTenants
+
+Note : Please note that this clean-up takes approximately 3 minutes.
 
 Security
 
