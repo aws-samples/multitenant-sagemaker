@@ -1,16 +1,16 @@
 Create Sagemaker machine learning pipeline for multi-tenant environment
 
-Business use case
+## Business use case
 
 This solution is for customers who want to securely build, train, and deploy multi-tenant machine learning models. It shows how to build machine learning models, considering data and model isolation and how to deploy and maintain trained models independently per tenant. This solution is suitable for Data Engineers and MLOps.
 
 Many customers are dealing with multi-tenant environment. They obtain data from customers, train models, and deploy in independent environment. A typical Machine Learning pipeline involves a series of steps to build a single use model from a predefined set of product features. Yet for most customers, they need to build models for hundreds of thousands of their customers who have very different behaviors and data. They face many challenges in creating such multi-tenant pipeline, in term of governance and security.
 
-Architecture
+## Architecture
 
 ![Architecture](./images/Architecture.jpg)   
 
-CDK project structure :
+## CDK project structure :
 
 The solution comprised of a cdk stack.
 
@@ -34,37 +34,37 @@ Pre-requisites
 
 Note: You can deploy this stack in your select AWS account and region.
 
-Steps to deploy the project
+### Steps to deploy the project
 
 1.	Clone the repository.
 
-   $ git clone git@github.com:aws-samples/multitenant-sagemaker.git
+   `$ git clone git@github.com:aws-samples/multitenant-sagemaker.git`
 
 2.	This project is set up like a standard Python project. To create the virtualenv it assumes that there is a python3 (or python for Windows) executable in your path with access to the venv package. create the virtualenv using following command.
 
-   $ python3 -m venv .venv 
+   `$ python3 -m venv .venv` 
 
 3.	Use the following step to activate your virtualenv.
 
-   $ source .venv/bin/activate
+   `$ source .venv/bin/activate`
 
 If you are a Windows platform, you would activate the virtualenv like this:
 
-   % .venv\Scripts\activate.bat
+   `% .venv\Scripts\activate.bat`
 
 Once the virtualenv is activated, you can install the required dependencies.
 
-   $ pip install -r requirements.txt
+   `$ pip install -r requirements.txt`
 
 4.	Run the following command to bootstrap the environment, replacing all <> occurences with select AWS account and region.
 
-   $ cdk bootstrap aws://<aws-account>/<region> -c table_name=allTenants
+   `$ cdk bootstrap aws://<aws-account>/<region> -c table_name=allTenants`
 
 5.	Deploying the solution :
 
 Deploying new stack with defined IAM Roles : Execute following command by passing a required parameter of DynamoDB table name.
 
-   $ cdk deploy Single-account-MultitenantSagemakerStack -c table_name=allTenants
+   `$ cdk deploy Single-account-MultitenantSagemakerStack -c table_name=allTenants`
 
 Arguments to the stack creation :
 
@@ -127,7 +127,7 @@ Testing the solution
 ![delete-sfn-input](./images/delete-sfn-input.jpg) 
 ![delete-sfn-result](./images/delete-sfn-result.jpg) 
  
-Clean up :
+### Clean up :
 
 To avoid incurring ongoing costs, delete the resources you created as part of this solution bye executing following commands in order.
 
