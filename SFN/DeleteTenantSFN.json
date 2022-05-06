@@ -133,7 +133,16 @@
               },
               "Resource": "arn:aws:states:::aws-sdk:sagemaker:deleteModel",
               "ResultPath": "$.response.delete-model",
-              "End": true
+              "Next": "DeleteEndpointConfig"
+            },
+            "DeleteEndpointConfig": {
+              "Type": "Task",
+              "End": true,
+              "Parameters": {
+                "EndpointConfigName.$": "$.Item.tenant-name.S"
+              },
+              "Resource": "arn:aws:states:::aws-sdk:sagemaker:deleteEndpointConfig",
+              "ResultPath": "$.response.delete-endpoint-config"
             }
           }
         },
