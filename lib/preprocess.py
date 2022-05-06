@@ -35,7 +35,7 @@ if __name__ == "__main__":
     
     print(input_data)
     
-    if(input_data.startswith("https")):
+    if(input_data.startswith("http")):
         bucket = input_data.split("/")[2].split(".s3.amazonaws.com")[0]
         key = "/".join(input_data.split("/")[3:]) + 'churn.txt'
     else:
