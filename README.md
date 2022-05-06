@@ -97,6 +97,7 @@ Note : Please note that this Create Step Function takes approximately less than 
 ![allTenants1](./images/allTenants1.jpg) 
  
 •	Step 3 : In S3, upload input data for machine learning pipeline. The input data, churn.txt, is located under multitenant-sagemaker/sample-data subfolder.
+
 ![s3-data](./images/s3-data.jpg) 
 ![s3-data-uploaded](./images/s3-data-uploaded.jpg) 
 
