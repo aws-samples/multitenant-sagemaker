@@ -23,6 +23,22 @@ from os import path
 
 class SingleAccountTenantOnboardStack(core.Stack):
 
+    def create_tenant_us_east_1_stepfunction(self, table_name, region, sfn_role_arn):
+
+      #Create SFN in us-east-1 region
+      with open("./SFN/CreateTenantSFN_us_east_1.json", "r") as fh1:
+        create_tenant_asl1 = json.load(fh1)
+      create_tenant_state_machine1 = stepfunctions.CfnStateMachine(
+        self,
+        "id_sm_multitenant_create_tenant_statemachine1",
+        role_arn=sfn_role_arn,
+        definition_string=json.dumps(create_tenant_asl1),
+        definition_substitutions={
+          "TableName": table_name
+        },
+        state_machine_name="sm-multitenant-create-tenant-statemachine1"
+      )
+      
     def create_tenant_stepfunction(self, table_name, region, sfn_role_arn):
 
       #Create SFN
@@ -159,8 +175,11 @@ class SingleAccountTenantOnboardStack(core.Stack):
         )
 
         sfn_role_arn = sfn_role.role_arn
-
-        self.create_tenant_stepfunction(table_name, env.region, sfn_role_arn)
+        
+        if env.region=="us-east-1":
+          self.create_tenant_us_east_1_stepfunction(table_name, env.region, sfn_role_arn)
+        else:
+          self.create_tenant_stepfunction(table_name, env.region, sfn_role_arn)
         self.delete_tenant_step_function(table_name, sfn_role_arn)
         self.deploy_endpoint_stepfunction(table_name, sfn_role_arn)
         self.create_sm_pipeline(table, env.region)
