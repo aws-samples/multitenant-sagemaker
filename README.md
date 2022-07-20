@@ -83,6 +83,12 @@ After the stack is succefully deployed (You can see if there is an error as the 
 
 •	Step 1 : In Step Function, execute Create Step Function sm-multitenant-create-tenant-statemachine to create tenant bucket, model registry group, and update tenant metadata in allTenants DynamoDB table. Follow the Input JSON format below, replacing tenant's name (same as bucket's name, i.e. "ut-101") with a globally unique name. By default, the bucket being created will be blocked from public access.
 
+{
+    "tenant": {
+      "name": "<bucket-name>"
+    }
+}
+
 Note : Please note that this Create Step Function takes approximately less than a minute.
 
 ![createsfn](./images/create-sfn.jpg) 
@@ -118,6 +124,13 @@ Note : Please note that each machine learning pipeline takes approximately 15 mi
  
 •	Step 6 : In Step Function, execute Deploy Step Function sm-multitenant-deploy-tenant-statemachine to create and test model endpoint of the approved version, then update tenant metadata in allTenants DynamoDB table. Follow the Input JSON format below, replacing tenant's name (same as bucket's name, i.e. "ut-101") and tenant's version with your defined tenant's name and the approved modelpackage ARN.
 
+{
+    "tenant": {
+      "name": "<bucket-name>",
+      "version": "arn:aws:sagemaker:<region>:<aws-account>:model-package/<bucket-name>/<version>"
+    }
+}
+
 Note : Please note that this Deploy Step Function takes approximately 5 minutes.
 
 ![deploy-sfn](./images/deploy-sfn.jpg) 
@@ -128,7 +141,13 @@ Note : Please note that this Deploy Step Function takes approximately 5 minutes.
 •	Step 7 : Once the Deploy Step Function completes successfully, you will find an in-service model endpoint in Amazon Sagemaker Console, under Inference > Endpoints. You can further test and validate this endpoint. Note that the Deploy Step Function also ensures a success invoke-endpoint.
 
 •	Step 8 : In case you need to clean up the, in Step Function, execute Delete Step Function to delete tenant resources and update the tenant metadata in allTenants DynamoDB table.
- 
+
+{
+    "tenant": {
+      "name": "<bucket-name>"
+    }
+}
+
 Note : Please note that this Delete Step Function takes approximately 5 seconds.
 
 ![delete-sfn](./images/delete-sfn.jpg) 
