@@ -84,8 +84,8 @@ After the stack is succefully deployed (You can see if there is an error as the 
 •	Step 1 : In Step Function, execute Create Step Function sm-multitenant-create-tenant-statemachine to create tenant bucket, model registry group, and update tenant metadata in allTenants DynamoDB table. Follow the Input JSON format below, replacing tenant's name (same as bucket's name, i.e. "ut-101") with a globally unique name. By default, the bucket being created will be blocked from public access.
 
 {
-    "tenant": {\n\t
-      "name": "\<bucket-name\>"\n\t
+    "tenant": {
+      "name": "\<bucket-name\>"
     }
 }
 
@@ -126,8 +126,8 @@ Note : Please note that each machine learning pipeline takes approximately 15 mi
 
 {
     "tenant": {
-      "name": "<bucket-name>",
-      "version": "arn:aws:sagemaker:<region>:<aws-account>:model-package/<bucket-name>/<version>"
+      "name": "\<bucket-name\>",
+      "version": "arn:aws:sagemaker:\<region\>:\<aws-account\>:model-package/\<bucket-name\>/\<version\>"
     }
 }
 
@@ -144,7 +144,7 @@ Note : Please note that this Deploy Step Function takes approximately 5 minutes.
 
 {
     "tenant": {
-      "name": "<bucket-name>"
+      "name": "\<bucket-name\>"
     }
 }
 
