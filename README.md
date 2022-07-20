@@ -85,7 +85,7 @@ After the stack is succefully deployed (You can see if there is an error as the 
 
 {
     "tenant": {
-      "name": "<bucket-name>"
+      "name": "\<bucket-name\>"
     }
 }
 
