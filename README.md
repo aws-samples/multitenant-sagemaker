@@ -158,7 +158,7 @@ Note : Please note that this Delete Step Function takes approximately 5 seconds.
 
 To avoid incurring ongoing costs, delete the resources you created as part of this solution bye executing following commands in order.
 
-   $ cdk destroy Single-account-MulitenantSagemakerStack -c table_name=allTenants
+   $ cdk destroy Single-account-MultitenantSagemakerStack -c table_name=allTenants
 
 Note : Please note that this clean-up takes approximately 2 minutes.
 
