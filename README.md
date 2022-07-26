@@ -1,4 +1,4 @@
-## Create Sagemaker machine learning pipeline for multi-tenant environment
+## Create a secured Sagemaker machine learning pipeline for multi-tenant environment
 
 ## Business use case
 
